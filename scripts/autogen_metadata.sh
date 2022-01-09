@@ -8,6 +8,7 @@ declare -x LSP_CONFIG_DIR="$NVIM_PACK_DIR/packer/start/nvim-lspconfig"
 declare -x PLENARY_DIR="$NVIM_PACK_DIR/packer/start/plenary.nvim"
 declare -x LSP_INSTALLER_DIR="$PWD"
 
-nvim -u NONE -E -R --headless \
+#nvim -u NONE -E -R --headless \
+nvim --headless \
   --cmd "set rtp+=${PLENARY_DIR},${LSP_CONFIG_DIR},${LSP_INSTALLER_DIR}" \
   +"luafile scripts/autogen_metadata.lua" +q
