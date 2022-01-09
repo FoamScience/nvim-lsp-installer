@@ -51,6 +51,9 @@ return function(name, root_dir)
         languages = { "java" },
         homepage = "https://github.com/eclipse/eclipse.jdt.ls",
         installer = {
+            std.ensure_executables {
+                { "java", "java was not found in path." },
+            },
             ---@type ServerInstallerFunction
             function(_, callback, ctx)
                 if ctx.requested_server_version then
@@ -84,6 +87,14 @@ return function(name, root_dir)
         },
         default_options = {
             cmd = get_cmd(vim.env.WORKSPACE and vim.env.WORKSPACE or path.concat { vim.env.HOME, "workspace" }),
+            on_new_config = function(config)
+                -- We redefine the cmd in on_new_config because `cmd` will be invalid if the user has not installed
+                -- jdtls when starting the session (due to vim.fn.expand returning an empty string, because it can't
+                -- locate the file).
+                config.cmd = get_cmd(
+                    vim.env.WORKSPACE and vim.env.WORKSPACE or path.concat { vim.env.HOME, "workspace" }
+                )
+            end,
         },
     }
 end

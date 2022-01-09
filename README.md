@@ -196,6 +196,7 @@ lsp_installer.settings({
 | Lua                                 | `sumneko_lua`             |
 | Markdown                            | `remark_ls`               |
 | Markdown                            | `zk`                      |
+| Nim                                 | `nimls`                   |
 | OCaml                               | `ocamlls`                 |
 | Objective C                         | `ccls`                    |
 | OpenAPI                             | `spectral`                |
